@@ -31,8 +31,8 @@ class DataViewer(QtWidgets.QWidget):
 
         layout.addWidget(file_selector)
         layout.addWidget(sort_options)
-        layout.addWidget(self.view_table)
         layout.addWidget(self.filter_view)
+        layout.addWidget(self.view_table)
 
         file_selector.file_path_updated.connect(self.update_folder)
         self.setLayout(layout)

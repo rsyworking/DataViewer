@@ -118,15 +118,16 @@ class FilterComposer(QtWidgets.QScrollArea):
         super().__init__()
         # map row index to QRectF
         self.rectForRow = {}
-        self.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
-        self.setAlignment(QtCore.Qt.AlignTop)
-
         self.condition_widgets = {}
         self.filter_texts = {}
 
         self.model = MyFilterModel()
 
-        self.layout = QtWidgets.QVBoxLayout()
+        content_widget = QtWidgets.QWidget()
+        self.setWidget(content_widget)
+        self.setWidgetResizable(True)
+
+        self.layout = QtWidgets.QVBoxLayout(content_widget)
         self.layout.setAlignment(QtCore.Qt.AlignTop)
         add_remove_widget = QtWidgets.QWidget()
         add_remove_layout = QtWidgets.QHBoxLayout(add_remove_widget)
@@ -138,8 +139,9 @@ class FilterComposer(QtWidgets.QScrollArea):
         grid_widget = QtWidgets.QWidget()
         self.grid_layout = QtWidgets.QGridLayout(grid_widget)
         self.layout.addWidget(grid_widget)
-        self.setLayout(self.layout)
+
         self.set_grid_layout()
+        self.setMaximumHeight(200)
 
     def set_grid_layout(self):
         self.condition_widgets = {}
